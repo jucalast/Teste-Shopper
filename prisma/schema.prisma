@@ -1,0 +1,21 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Measure {
+  id              Int      @id @default(autoincrement())
+  customerCode    String
+  measureDatetime DateTime
+  measureType     String
+  measureValue    Int?
+  imageUrl        String
+  measureUuid     String   @unique
+  isConfirmed     Boolean  @default(false)
+
+  @@index([customerCode, measureDatetime, measureType], name: "measure_index")
+}
