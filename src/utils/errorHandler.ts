@@ -1,5 +1,3 @@
-// src/utils/errorHandler.ts
-
 import { Response } from 'express';
 
 export function handleErrors(error: unknown, res: Response) {

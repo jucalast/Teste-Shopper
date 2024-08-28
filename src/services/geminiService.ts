@@ -7,13 +7,14 @@ import path from "path";
 
 config();
 
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey) {
   throw new Error("API key is not defined");
 }
 
 const fileManager = new GoogleAIFileManager(apiKey);
 const genAI = new GoogleGenerativeAI(apiKey);
+
 
 export async function uploadImage(
   base64Image: string
