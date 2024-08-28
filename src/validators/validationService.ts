@@ -3,27 +3,26 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function validateMeasureNotExist(customerCode: string, measureDatetime: Date, measureType: string): Promise<boolean> {
+    // Primeiro, buscar o ID do tipo de medição
+    const measureTypeRecord = await prisma.measureType.findUnique({
+        where: { type: measureType.toUpperCase() },
+    });
+
+    if (!measureTypeRecord) {
+        throw new Error("MEASURE_TYPE_NOT_FOUND");
+    }
+
+    // Buscar a medição com o ID do tipo de medição
     const measure = await prisma.measure.findFirst({
         where: {
-            customerCode,
+            customer: { code: customerCode },
             measureDatetime: {
                 gte: new Date(measureDatetime.getFullYear(), measureDatetime.getMonth(), 1),
                 lt: new Date(measureDatetime.getFullYear(), measureDatetime.getMonth() + 1, 1),
             },
-            measureType
+            measureTypeId: measureTypeRecord.id, // Usar o ID do tipo de medição
         }
     });
+
     return measure === null;
-}
-
-export async function validateMeasureExists(measureId: string): Promise<boolean> {
-    // Supondo que 'id' é o campo único no seu modelo Prisma
-    const measure = await prisma.measure.findUnique({ where: { id: measureId } });
-    return measure !== null;
-}
-
-export async function validateMeasureConfirmed(measureId: string): Promise<boolean> {
-    // Supondo que 'id' é o campo único no seu modelo Prisma
-    const measure = await prisma.measure.findUnique({ where: { id: measureId } });
-    return measure ? measure.hasConfirmed : false; // Corrigido para 'hasConfirmed'
 }

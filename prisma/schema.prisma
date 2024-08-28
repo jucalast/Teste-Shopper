@@ -7,13 +7,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Customer {
+  id             String    @id @default(uuid())
+  code           String    @unique
+  name           String
+  createdAt      DateTime  @default(now())
+  measures       Measure[] // Relacionamento com as medições
+}
+
+model MeasureType {
+  id             String    @id @default(uuid())
+  type           String    @unique // Tipo de medição como 'WATER', 'GAS'
+  measures       Measure[] // Relacionamento com as medições
+}
+
 model Measure {
-  id            String   @id @default(uuid())
-  customerCode  String
+  id             String      @id @default(uuid())
+  customer       Customer    @relation(fields: [customerId], references: [id])
+  customerId     String
   measureDatetime DateTime
-  measureType   String
-  measureValue  Int?
-  imageUrl      String
-  hasConfirmed  Boolean  @default(false)
-  createdAt     DateTime @default(now())
+  measureType    MeasureType @relation(fields: [measureTypeId], references: [id])
+  measureTypeId  String
+  measureValue   Float?
+  imageUrl       String
+  hasConfirmed   Boolean     @default(false)
+  createdAt      DateTime    @default(now())
 }
