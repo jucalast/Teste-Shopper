@@ -16,12 +16,14 @@ export async function validateMeasureNotExist(customerCode: string, measureDatet
     return measure === null;
 }
 
-export async function validateMeasureExists(measureUuid: string): Promise<boolean> {
-    const measure = await prisma.measure.findUnique({ where: { measureUuid } });
+export async function validateMeasureExists(measureId: string): Promise<boolean> {
+    // Supondo que 'id' é o campo único no seu modelo Prisma
+    const measure = await prisma.measure.findUnique({ where: { id: measureId } });
     return measure !== null;
 }
 
-export async function validateMeasureConfirmed(measureUuid: string): Promise<boolean> {
-    const measure = await prisma.measure.findUnique({ where: { measureUuid } });
-    return measure ? measure.isConfirmed : false;
+export async function validateMeasureConfirmed(measureId: string): Promise<boolean> {
+    // Supondo que 'id' é o campo único no seu modelo Prisma
+    const measure = await prisma.measure.findUnique({ where: { id: measureId } });
+    return measure ? measure.hasConfirmed : false; // Corrigido para 'hasConfirmed'
 }

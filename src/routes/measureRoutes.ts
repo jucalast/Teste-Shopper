@@ -1,10 +1,10 @@
-import express from 'express';
-import { uploadMeasureController, confirmMeasureController, listMeasuresController } from '../controllers/measureController';
+import { Router } from 'express';
+import * as measureController from '../controllers/measureController';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/upload', uploadMeasureController);
-router.patch('/confirm', confirmMeasureController);
-router.get('/:customer_code/list', listMeasuresController);
+router.post('/upload', measureController.uploadMeasure);
+router.patch('/confirm', measureController.confirmMeasure);
+router.get('/:customer_code/list', measureController.listMeasures);
 
 export default router;
