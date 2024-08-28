@@ -8,14 +8,12 @@ generator client {
 }
 
 model Measure {
-  id              Int      @id @default(autoincrement())
-  customerCode    String
+  id            String   @id @default(uuid())
+  customerCode  String
   measureDatetime DateTime
-  measureType     String
-  measureValue    Int?
-  imageUrl        String
-  measureUuid     String   @unique
-  isConfirmed     Boolean  @default(false)
-
-  @@index([customerCode, measureDatetime, measureType], name: "measure_index")
+  measureType   String
+  measureValue  Int?
+  imageUrl      String
+  hasConfirmed  Boolean  @default(false)
+  createdAt     DateTime @default(now())
 }
