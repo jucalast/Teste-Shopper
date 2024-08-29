@@ -32,3 +32,15 @@ Para verificar se os containers estão em execução, você pode usar o seguinte
 ```bash
 docker-compose ps
 ```
+
+## 📜 Notas Adicionais
+
+Parar e Remover Containers: Para parar e remover os containers, execute:
+```bash
+docker-compose down
+```
+
+Visualizar Logs: Para visualizar os logs dos containers, use:
+```bash
+docker-compose logs
+````
