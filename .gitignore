@@ -13,8 +13,7 @@ yarn-error.log*
 # Dependency directories
 jspm_packages/
 
-# Optional npm cache directory
-.npm
+
 
 # Optional eslint cache
 .eslintcache
@@ -31,11 +30,6 @@ jspm_packages/
 *.swo
 *.swn
 
-# Build outputs
-dist/
-build/
-out/
-*.d.ts
 
 # TypeScript
 *.tsbuildinfo
@@ -58,13 +52,6 @@ ehthumbs.db
 *.swp
 *~
 
-# Docker
-Dockerfile
-Docker-compose.yml
-
-# Prisma
-.prisma/
-
 # Coverage
 coverage/
 
@@ -82,9 +69,7 @@ coverage/
 .next/
 out/
 
-# Nuxt.js
-.nuxt/
-dist/
+
 
 # Gatsby
 public/
