@@ -2,6 +2,17 @@ import { Request, Response } from 'express';
 import * as measureService from '../services/measureService/measureService';
 import { handleErrors } from '../utils/errorHandler';
 
+// Definindo um tipo personalizado para a medida
+interface MeasureWithType {
+  id: string;
+  measureDatetime: Date;
+  measureType?: {
+    type: string;
+  };
+  hasConfirmed: boolean;
+  imageUrl: string;
+}
+
 export async function listMeasures(req: Request, res: Response) {
   try {
     const { customer_code } = req.params;
@@ -26,10 +37,10 @@ export async function listMeasures(req: Request, res: Response) {
 
     res.status(200).json({
       customer_code,
-      measures: measures.map(measure => ({
+      measures: measures.map((measure: MeasureWithType) => ({
         measure_uuid: measure.id,
         measure_datetime: measure.measureDatetime,
-        measure_type: measure.measureType.type,  // Acessando o tipo do MeasureType
+        measure_type: measure.measureType?.type,  // Acessando o tipo do MeasureType
         has_confirmed: measure.hasConfirmed,
         image_url: measure.imageUrl,
       })),

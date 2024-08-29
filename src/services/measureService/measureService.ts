@@ -1,8 +1,20 @@
-// src/services/measureService/measureService.ts
 import { PrismaClient } from '@prisma/client';
 import * as customerService from './customerService';
 import * as measureTypeService from './measureTypeService';
 import { handleImageUpload } from '../geminiAI/main';
+
+// Definindo um tipo personalizado para a medida
+interface MeasureWithType {
+  id: string;
+  measureDatetime: Date;
+  measureType?: {
+    type: string;
+  };
+  hasConfirmed: boolean;
+  imageUrl: string;
+}
+
+
 
 const prisma = new PrismaClient();
 
@@ -89,32 +101,32 @@ export async function confirmMeasure(measureUuid: string, confirmedValue: number
     });
   }
 
-export async function listMeasures(customerCode: string, measureType?: string) {
-  const customer = await customerService.findCustomerByCode(customerCode);
-
-  if (!customer) {
-    throw new Error("CUSTOMER_NOT_FOUND");
-  }
-
-  const whereCondition: any = { customerId: customer.id };
-
-  if (measureType) {
-    const measureTypeRecord = await measureTypeService.findMeasureTypeByType(measureType);
-
-    if (!measureTypeRecord) {
-      throw new Error("MEASURE_TYPE_NOT_FOUND");
+  export async function listMeasures(customerCode: string, measureType?: string): Promise<MeasureWithType[]> {
+    const customer = await customerService.findCustomerByCode(customerCode);
+  
+    if (!customer) {
+      throw new Error("CUSTOMER_NOT_FOUND");
     }
-
-    whereCondition.measureTypeId = measureTypeRecord.id;
+  
+    const whereCondition: any = { customerId: customer.id };
+  
+    if (measureType) {
+      const measureTypeRecord = await measureTypeService.findMeasureTypeByType(measureType);
+  
+      if (!measureTypeRecord) {
+        throw new Error("MEASURE_TYPE_NOT_FOUND");
+      }
+  
+      whereCondition.measureTypeId = measureTypeRecord.id;
+    }
+  
+    const measures = await prisma.measure.findMany({
+      where: whereCondition,
+      include: { measureType: true },
+      orderBy: {
+        measureDatetime: 'desc',
+      },
+    });
+  
+    return measures as MeasureWithType[]; // Usar o tipo personalizado
   }
-
-  const measures = await prisma.measure.findMany({
-    where: whereCondition,
-    include: { measureType: true },
-    orderBy: {
-      measureDatetime: 'desc',
-    },
-  });
-
-  return measures;
-}
