@@ -23,3 +23,12 @@ Execute o comando abaixo para criar e iniciar os containers definidos no arquivo
 ```bash
 docker-compose up -d
 ```
+Após a execução bem-sucedida deste comando, a aplicação estará rodando em um container Docker.
+
+
+###🔍 Verificando o Status
+
+Para verificar se os containers estão em execução, você pode usar o seguinte comando:
+```bash
+docker-compose ps
+```
