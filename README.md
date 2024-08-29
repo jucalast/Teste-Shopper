@@ -26,7 +26,7 @@ docker-compose up -d
 Após a execução bem-sucedida deste comando, a aplicação estará rodando em um container Docker.
 
 
-###🔍 Verificando o Status
+## 🔍 Verificando o Status
 
 Para verificar se os containers estão em execução, você pode usar o seguinte comando:
 ```bash
