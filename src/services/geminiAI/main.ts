@@ -1,6 +1,5 @@
 import { saveImage, deleteImage, uploadImage } from "./fileManager";
 import { processImage } from "./imageProcessor";
-import { extractMeasureValue } from "./extractor";
 import { generateUUID } from "./uuidGenerator";
 
 interface UploadFileResponse {
@@ -30,10 +29,7 @@ export async function handleImageUpload(base64Image: string): Promise<{
     deleteImage(tempFilePath);
 
     const fileUri = uploadResponse.file.uri;
-    const extractedText = await processImage(fileUri, mimeType);
-    console.log("Extracted text:", extractedText);
-
-    const measureValue = extractMeasureValue(extractedText);
+    const measureValue = await processImage(fileUri, mimeType);
     console.log("Parsed measure value:", measureValue);
 
     return {
