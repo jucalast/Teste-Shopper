@@ -25,17 +25,7 @@ export async function uploadMeasure(req: Request, res: Response) {
     // Validar o código do cliente (deve ser uma string)
     const customerCodeStr = String(customer_code);
     
-    // Validar a data (convertendo o formato DD/MM/YYYY para YYYY-MM-DD)
-    const [day, month, year] = measure_datetime.split('/');
-    const formattedDate = `${year}-${month}-${day}`;
-    const measureDate = new Date(formattedDate);
-    
-    if (isNaN(measureDate.getTime())) {
-      return res.status(400).json({
-        error_code: 'INVALID_DATE',
-        error_description: 'Data inválida fornecida. Use o formato DD/MM/YYYY.',
-      });
-    }
+
 
     // Validar o tipo de medição
     const validMeasureTypes = ['WATER', 'GAS'];
@@ -50,7 +40,7 @@ export async function uploadMeasure(req: Request, res: Response) {
     const measure = await measureService.createMeasure({
       base64Image: image,
       customerCode: customerCodeStr,
-      measureDatetime: measureDate,
+      measureDatetime: measure_datetime,
       measureType: measure_type,
       customerName: customer_name, // Opcionalmente passado
     });
