@@ -13,3 +13,6 @@ Siga os passos abaixo para iniciar a aplicação utilizando Docker:
 ### 1. Navegue para a Pasta Raiz do Projeto
 
 Abra o terminal e use o comando `cd` para acessar a pasta raiz do projeto. A pasta raiz é onde está localizado o arquivo `docker-compose.yml`.
+```bash
+cd /caminho/para/pasta/raiz/do/projeto
+```
