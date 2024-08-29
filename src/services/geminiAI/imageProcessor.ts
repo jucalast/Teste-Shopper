@@ -15,7 +15,7 @@ export async function processImage(
 ): Promise<string> {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
   const prompt =
-    "Please extract the meter reading from the provided image. The reading may include decimal points. Provide the result as a number with up to two decimal places if applicable.";
+    "Please extract the number found in the image. It may include decimal points. Provide the result as a number with up to two decimal places, if applicable.";
 
   try {
     const generatedContent: GenerateContentResponse = await model.generateContent(
