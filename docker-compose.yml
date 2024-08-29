@@ -2,11 +2,13 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
-    restart: unless-stopped
+      - .:/usr/src/app
+    command: npm start
+
+
+volumes:
+  pgdata:
