@@ -3,3 +3,111 @@ node_modules/
 package-lock.json
 
 .env
+yarn.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+
+
+
+# Optional eslint cache
+.eslintcache
+
+# Optional eslint configuration files
+*.eslintrc.js
+*.eslintrc.json
+*.eslintrc.yaml
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Mac OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Linux
+*.swp
+*~
+
+# Coverage
+coverage/
+
+# Miscellaneous
+*.pem
+*.key
+*.crt
+*.csr
+
+# SvelteKit
+.svelte-kit/
+.svelte/
+
+# Next.js
+.next/
+out/
+
+
+
+# Gatsby
+public/
+.cache/
+
+# Vue.js
+*.local
+
+# Storybook
+storybook-static/
+
+# Bower
+bower_components/
+
+# Build tools
+*.log
+*.pid
+
+# Other
+*.tgz
+*.gz
+*.zip
+*.tar
+
+# Compiled Source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.obj
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Caches
+.cache/
+*.cache/
