@@ -7,8 +7,8 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app
+      - sqlite-db:/usr/src/app/prisma   # Mapeia o diretório onde o arquivo do banco de dados SQLite está localizado
     command: npm start
 
-
 volumes:
-  pgdata:
+  sqlite-db:
