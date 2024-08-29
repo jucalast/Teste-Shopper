@@ -14,5 +14,12 @@ Siga os passos abaixo para iniciar a aplicação utilizando Docker:
 
 Abra o terminal e use o comando `cd` para acessar a pasta raiz do projeto. A pasta raiz é onde está localizado o arquivo `docker-compose.yml`.
 ```bash
-cd /caminho/para/pasta/raiz/do/projeto
+cd /Teste-Shopper
+```
+
+### 2. Inicie o Container Docker
+
+Execute o comando abaixo para criar e iniciar os containers definidos no arquivo `docker-compose.yml`. Este comando irá rodar a aplicação em segundo plano (modo destacável).
+```bash
+docker-compose up -d
 ```
