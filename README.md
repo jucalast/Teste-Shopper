@@ -1,5 +1,3 @@
-markdown
-
 # Projeto Shopper
 
 Este projeto é um aplicativo de e-commerce que utiliza Docker para facilitar a configuração e execução em ambientes de desenvolvimento e produção.
