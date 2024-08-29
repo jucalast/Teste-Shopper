@@ -25,8 +25,7 @@ export async function processImage(
 
     const extractedText = generatedContent.response.text().trim();
     console.log("Extracted text:", extractedText);
-
-    // Extrair o valor numérico do texto retornado
+    
     const measureValue = extractMeasureValue(extractedText);
     console.log("Parsed measure value:", measureValue);
 

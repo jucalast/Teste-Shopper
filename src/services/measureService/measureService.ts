@@ -3,7 +3,7 @@ import * as customerService from './customerService';
 import * as measureTypeService from './measureTypeService';
 import { handleImageUpload } from '../geminiAI/main';
 
-// Definindo um tipo personalizado para a medida
+
 interface MeasureWithType {
   id: string;
   measureDatetime: Date;
@@ -27,26 +27,25 @@ export async function createMeasure(data: {
 }) {
   const validMeasureTypes = ['WATER', 'GAS'];
 
-  // Validar tipo de medição
+
   if (!validMeasureTypes.includes(data.measureType.toUpperCase())) {
     throw new Error("INVALID_TYPE");
   }
 
-  // Buscar ou criar o cliente
+
   let customer = await customerService.findCustomerByCode(data.customerCode);
 
   if (!customer) {
     customer = await customerService.createCustomer(data.customerCode, data.customerName || '');
   }
 
-  // Buscar ou criar o tipo de medição
+
   let measureTypeRecord = await measureTypeService.findMeasureTypeByType(data.measureType);
 
   if (!measureTypeRecord) {
     measureTypeRecord = await measureTypeService.createMeasureType(data.measureType);
   }
 
-  // Verificar se já existe uma medição no mês
   const existingMeasure = await prisma.measure.findFirst({
     where: {
       customerId: customer.id,
@@ -128,5 +127,5 @@ export async function confirmMeasure(measureUuid: string, confirmedValue: number
       },
     });
   
-    return measures as MeasureWithType[]; // Usar o tipo personalizado
+    return measures as MeasureWithType[]; 
   }
