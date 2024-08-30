@@ -3,8 +3,9 @@
 Bem-vindo ao Projeto Shopper! Este documento fornece instruções detalhadas para rodar a aplicação usando Docker.
 
 ## 🛠️ **Pré-requisitos**
-
-Antes de começar, você precisa ter o Docker e o Docker Compose instalados em sua máquina. Você pode baixá-los e instalá-los a partir do [site oficial do Docker](https://www.docker.com/products/docker-desktop).
+Ter instalado na maquina:
+- Docker
+- SQlite
 
 ## 🚀 **Instruções para Rodar o Container**
 
